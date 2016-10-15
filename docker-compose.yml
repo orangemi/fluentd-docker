@@ -1,0 +1,25 @@
+version: '2'
+services:
+  elasticsearch:
+    ports:
+      - 9200:9200
+    image: elasticsearch
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+  kibana:
+    image: kibana
+    links:
+      - elasticsearch
+    ports:
+      - 5602:5601
+
+  fluentd:
+    image: fluentd-elasticsearch
+    ports:
+      - 24224:24224
+    links:
+      - elasticsearch
+    volumes:
+      - ./fluentd/data:/fluentd/log
+      - ./fluentd/conf/demo.conf:/fluentd/etc/fluent.conf
+
