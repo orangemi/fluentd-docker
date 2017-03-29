@@ -5,7 +5,7 @@ ENV PATH /home/fluent/.gem/ruby/2.3.0/bin:$PATH
 
 USER root
 RUN apk --no-cache --update add sudo build-base ruby-dev && \
-    sudo -u fluent gem install fluent-plugin-kafka fluent-plugin-forest && \
+    sudo -u fluent gem install fluent-plugin-concat fluent-plugin-kafka fluent-plugin-forest && \
     rm -rf /home/fluent/.gem/ruby/2.3.0/cache/*.gem && sudo -u fluent gem sources -c && \
     apk del sudo build-base ruby-dev && rm -rf /var/cache/apk/*
 
